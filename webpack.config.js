@@ -27,15 +27,15 @@ module.exports = {
     rules: [
       {
         test: /\.jsx$/,
-        use: ['babel-loader'],
         exclude: PATHS.node_modules,
         include: PATHS.src,
+        loader: 'babel-loader',
       },
       {
         test: /\.js$/,
-        use: ['babel-loader'],
         exclude: PATHS.node_modules,
         include: PATHS.src,
+        loader: 'babel-loader',
       }
     ]
   },

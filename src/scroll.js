@@ -3,35 +3,37 @@
  * @email   814120507@qq.com
  * @date    2017-08-04 16:09:17
  */
+var thatGlobal = require("global");
+var w = require("global/window");
 
 
 //  requestAnimationFrame兼容性写法
-(function () {
+(function (win) {
   let lastTime = 0;
   const vendors = ['webkit', 'moz'];
-  for (let x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-    window.requestAnimationFrame = window[`${vendors[x]}RequestAnimationFrame`];
-    window.cancelAnimationFrame =
-          window[`${vendors[x]}CancelAnimationFrame`] || window[`${vendors[x]}CancelRequestAnimationFrame`];
+  for (let x = 0; x < vendors.length && !win.requestAnimationFrame; ++x) {
+    win.requestAnimationFrame = win[`${vendors[x]}RequestAnimationFrame`];
+    win.cancelAnimationFrame =
+          win[`${vendors[x]}CancelAnimationFrame`] || win[`${vendors[x]}CancelRequestAnimationFrame`];
   }
 
-  if (!window.requestAnimationFrame) {
-    window.requestAnimationFrame = function (callback) {
+  if (!win.requestAnimationFrame) {
+    win.requestAnimationFrame = function (callback) {
       const currTime = new Date().getTime();
       const timeToCall = Math.max(0, 16 - (currTime - lastTime));
-      const id = window.setTimeout(() => { callback(currTime + timeToCall); },
+      const id = win.setTimeout(() => { callback(currTime + timeToCall); },
         timeToCall);
       lastTime = currTime + timeToCall;
       return id;
     };
   }
 
-  if (!window.cancelAnimationFrame) {
-    window.cancelAnimationFrame = function (id) {
+  if (!win.cancelAnimationFrame) {
+    win.cancelAnimationFrame = function (id) {
       clearTimeout(id);
     };
   }
-}());
+})(w);
 
 // 动画效果函数
 const Tween = {
@@ -53,7 +55,7 @@ const Tween = {
 
 // 获取当前滚动条位置
 export const currentYPosition = () => document.documentElement.scrollTop
-  || window.pageYOffset
+  || w.pageYOffset
   || document.body.scrollTop;
 
 // 获取目标元素的位置
@@ -79,7 +81,7 @@ export const scrollTo = (pos, during = 60, ease = 'linear') => {
   const _run = function () {
     start++;
     const top = Tween[ease](start, scrollY, targetY - scrollY, during);
-    window.scrollTo(0, top);
+    w.scrollTo(0, top);
     if (start < during) {
       stop = requestAnimationFrame(_run);
     }

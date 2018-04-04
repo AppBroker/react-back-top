@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @authors ZiQiangWang
  * @email   814120507@qq.com
  * @date    2017-08-04 16:08:43
@@ -142,8 +142,8 @@ BackToTop.defaultProps = {
     background: '#eb0000',
   },
   topDistance: 200,
-  timing: 'linear',
-  speed: 100,
+  timing: 'easeOut',
+  speed: 500,
 };
 
 BackToTop.propTypes = {
