@@ -1,5 +1,5 @@
 # react-back-top
-React component to back to top.  
+React component to back to top. Forked to work with SSR
 ![](example/back_top.gif)
 ## 1. Installation
 > npm install --save react-back-top
