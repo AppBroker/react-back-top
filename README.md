@@ -1,4 +1,4 @@
-# react-back-top
+# react-back-top (Forked to work with Server Side Rendering)
 React component to back to top. Forked to work with SSR
 ![](example/back_top.gif)
 ## 1. Installation
