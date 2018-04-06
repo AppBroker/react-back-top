@@ -3,7 +3,6 @@
  * @email   814120507@qq.com
  * @date    2017-08-04 16:09:17
  */
-var thatGlobal = require("global");
 var w = require("global/window");
 
 
